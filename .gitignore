@@ -6,7 +6,9 @@ bin-release/
 
 # Other files and folders
 .settings/
-
+WEBDAV/
+web/
+test/
 # Executables
 *.swf
 *.air
