@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hoster/models/user_model.dart';
 
 const Color lightWhite = Colors.white;
 const Color darkWhite = Color.fromARGB(255, 149, 149, 162);
@@ -76,3 +77,8 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
 int currentScreen = 0;
 
 final PageController screensController = PageController(initialPage: currentScreen);
+
+const List<String> columns = <String>["UID", "NAME", "E-MAIL", "PASSWORD", "CLIENT TYPE", "ACTIONS"];
+const List<UserModel> users = <UserModel>[];
+
+final GlobalKey<State<StatefulWidget>> pagerKey = GlobalKey<State<StatefulWidget>>();

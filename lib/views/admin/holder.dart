@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hoster/utils/shared.dart';
-import 'package:icons_plus/icons_plus.dart';
+import 'package:hoster/views/admin/dashboard.dart';
+import 'package:hoster/views/admin/settings.dart';
+import 'package:hoster/views/admin/users_list.dart';
 
 class Holder extends StatefulWidget {
   const Holder({super.key});
@@ -12,23 +14,38 @@ class Holder extends StatefulWidget {
 }
 
 class _HolderState extends State<Holder> {
-  final List<Map<String, dynamic>> _tabs = <Map<String, dynamic>>[
-    <String, dynamic>{
-      "title": "DASHBOARD",
-      "callback": () {},
-      "state": false,
-    },
-    <String, dynamic>{
-      "title": "USERS LIST",
-      "callback": () {},
-      "state": false,
-    },
-    <String, dynamic>{
-      "title": "SETTINGS",
-      "callback": () {},
-      "state": false,
-    },
-  ];
+  final PageController _tabsController = PageController();
+
+  late final List<Map<String, dynamic>> _tabs;
+
+  @override
+  void initState() {
+    _tabs = <Map<String, dynamic>>[
+      <String, dynamic>{
+        "title": "DASHBOARD",
+        "callback": () => _tabsController.jumpToPage(0),
+        "state": false,
+      },
+      <String, dynamic>{
+        "title": "USERS LIST",
+        "callback": () => _tabsController.jumpToPage(1),
+        "state": false,
+      },
+      <String, dynamic>{
+        "title": "SETTINGS",
+        "callback": () => _tabsController.jumpToPage(2),
+        "state": false,
+      },
+    ];
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabsController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +77,11 @@ class _HolderState extends State<Holder> {
                             AnimatedContainer(
                               duration: 300.ms,
                               margin: index == _tabs.length - 1 ? null : const EdgeInsets.only(right: 20),
-                              padding: const EdgeInsets.only(bottom: 8),
-                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: _tabs[index]["state"] ? dark : transparent, width: 2))),
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(color: _tabs[index]["state"] ? dark : yellow, borderRadius: BorderRadius.circular(5)),
                               child: AnimatedDefaultTextStyle(
                                 duration: 300.ms,
-                                style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? dark : lightWhite),
+                                style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? yellow : dark),
                                 child: Text(_tabs[index]["title"]),
                               ),
                             ),
@@ -74,6 +91,14 @@ class _HolderState extends State<Holder> {
                   ],
                 );
               },
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: PageView(
+                controller: _tabsController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: const <Widget>[Dashboard(), UsersList(), Settings()],
+              ),
             ),
           ],
         ),
