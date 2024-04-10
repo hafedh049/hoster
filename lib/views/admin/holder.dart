@@ -12,22 +12,19 @@ class Holder extends StatefulWidget {
 }
 
 class _HolderState extends State<Holder> {
-  final List<Map<String, dynamic>> _headers = <Map<String, dynamic>>[
+  final List<Map<String, dynamic>> _tabs = <Map<String, dynamic>>[
     <String, dynamic>{
       "title": "DASHBOARD",
-      "icon": FontAwesome.house_solid,
       "callback": () {},
       "state": false,
     },
     <String, dynamic>{
       "title": "USERS LIST",
-      "icon": FontAwesome.box_archive_solid,
       "callback": () {},
       "state": false,
     },
     <String, dynamic>{
       "title": "SETTINGS",
-      "icon": FontAwesome.folder_solid,
       "callback": () {},
       "state": false,
     },
@@ -43,39 +40,32 @@ class _HolderState extends State<Holder> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Welcome to the Admin Panel", style: GoogleFonts.abel(color: lightWhite, fontSize: 55, fontWeight: FontWeight.bold)),
+            Text("Welcome to the Admin Panel", style: GoogleFonts.abel(color: dark, fontSize: 55, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             StatefulBuilder(
               builder: (BuildContext context, void Function(void Function()) _) {
                 return Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    for (int index = 0; index < _headers.length; index += 1)
+                    for (int index = 0; index < _tabs.length; index += 1)
                       InkWell(
                         splashColor: transparent,
                         highlightColor: transparent,
                         hoverColor: transparent,
-                        onHover: (bool value) => _(() => _headers[index]["state"] = value),
-                        onTap: _headers[index]["callback"],
+                        onHover: (bool value) => _(() => _tabs[index]["state"] = value),
+                        onTap: _tabs[index]["callback"],
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             AnimatedContainer(
                               duration: 300.ms,
-                              margin: index == _headers.length - 1 ? null : const EdgeInsets.only(right: 20),
+                              margin: index == _tabs.length - 1 ? null : const EdgeInsets.only(right: 20),
                               padding: const EdgeInsets.only(bottom: 8),
-                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: _headers[index]["state"] ? dark : transparent, width: 2))),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Icon(_headers[index]["icon"], color: _headers[index]["state"] ? dark : lightWhite, size: 15),
-                                  const SizedBox(width: 10),
-                                  AnimatedDefaultTextStyle(
-                                    duration: 300.ms,
-                                    style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _headers[index]["state"] ? dark : lightWhite),
-                                    child: Text(_headers[index]["title"]),
-                                  ),
-                                ],
+                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: _tabs[index]["state"] ? dark : transparent, width: 2))),
+                              child: AnimatedDefaultTextStyle(
+                                duration: 300.ms,
+                                style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? dark : lightWhite),
+                                child: Text(_tabs[index]["title"]),
                               ),
                             ),
                           ],
