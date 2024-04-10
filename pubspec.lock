@@ -193,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  fl_chart:
+    dependency: "direct main"
+    description:
+      name: fl_chart
+      sha256: "2b7c1f5d867da9a054661641c8f499c55c47c39acccb97b3bc673f5fa9a39e74"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.67.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -464,6 +472,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+  pie_chart:
+    dependency: "direct main"
+    description:
+      name: pie_chart
+      sha256: "58e6a46999ac938bfa1c3e5be414d6e149f037647197dca03ba3614324c12c82"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
   platform:
     dependency: transitive
     description:

@@ -81,7 +81,7 @@ class _HolderState extends State<Holder> {
                               decoration: BoxDecoration(color: _tabs[index]["state"] ? dark : yellow, borderRadius: BorderRadius.circular(5)),
                               child: AnimatedDefaultTextStyle(
                                 duration: 300.ms,
-                                style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? yellow : dark),
+                                style: GoogleFonts.abel(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? yellow : dark),
                                 child: Text(_tabs[index]["title"]),
                               ),
                             ),

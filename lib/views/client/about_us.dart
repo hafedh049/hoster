@@ -38,13 +38,13 @@ class _AboutUsState extends State<AboutUs> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(height: 80),
-            Text("About Our Web Hosting Services", style: GoogleFonts.itim(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
+            Text("About Our Web Hosting Services", style: GoogleFonts.abel(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
-            Text("Welcome to Web-Hosting-Master Hosting, your reliable web hosting partner. We are committed to providing top-notch hosting services tailored to your needs.", style: GoogleFonts.itim(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
+            Text("Welcome to Web-Hosting-Master Hosting, your reliable web hosting partner. We are committed to providing top-notch hosting services tailored to your needs.", style: GoogleFonts.abel(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
             const SizedBox(height: 20),
-            Text("At Web-Hosting-Master Hosting, we believe in simplicity, performance, and excellent customer support. Whether you are a small business owner, developer, or an enterprise, we have the right hosting solutions for you.", style: GoogleFonts.itim(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
+            Text("At Web-Hosting-Master Hosting, we believe in simplicity, performance, and excellent customer support. Whether you are a small business owner, developer, or an enterprise, we have the right hosting solutions for you.", style: GoogleFonts.abel(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
             const SizedBox(height: 20),
-            Text("Our mission is to empower your online presence by offering secure, scalable, and affordable hosting services. With state-of-the-art infrastructure and a team of experts, we ensure the stability and performance of your websites and applications.", style: GoogleFonts.itim(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
+            Text("Our mission is to empower your online presence by offering secure, scalable, and affordable hosting services. With state-of-the-art infrastructure and a team of experts, we ensure the stability and performance of your websites and applications.", style: GoogleFonts.abel(color: dark, fontSize: 20, fontWeight: FontWeight.w500)),
             const SizedBox(height: 20),
             Expanded(
               child: FutureBuilder<void>(

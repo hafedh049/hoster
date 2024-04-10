@@ -146,6 +146,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "fl_chart",
+      "rootUri": "file:///C:/Users/Dell/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.67.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/src/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -356,6 +362,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "pie_chart",
+      "rootUri": "file:///C:/Users/Dell/AppData/Local/Pub/Cache/hosted/pub.dev/pie_chart-5.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/Users/Dell/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.4",
       "packageUri": "lib/",
@@ -530,7 +542,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-10T00:37:52.410422Z",
+  "generated": "2024-04-10T12:04:51.666500Z",
   "generator": "pub",
   "generatorVersion": "3.3.3"
 }

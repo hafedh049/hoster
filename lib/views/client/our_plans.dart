@@ -26,7 +26,7 @@ class _OurPlansState extends State<OurPlans> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 80),
-            Text("Choose your plan", style: GoogleFonts.itim(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
+            Text("Choose your plan", style: GoogleFonts.abel(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
             const SizedBox(height: 30),
             Wrap(
               alignment: WrapAlignment.center,
@@ -55,18 +55,18 @@ class _OurPlansState extends State<OurPlans> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(item["title"], style: GoogleFonts.itim(fontSize: 25, fontWeight: FontWeight.w500, color: dark)),
+                                Text(item["title"], style: GoogleFonts.abel(fontSize: 25, fontWeight: FontWeight.w500, color: dark)),
                                 const SizedBox(height: 20),
                                 Row(
                                   children: <Widget>[
-                                    Text(item["price"], style: GoogleFonts.itim(fontSize: 35, fontWeight: FontWeight.bold, color: dark)),
+                                    Text(item["price"], style: GoogleFonts.abel(fontSize: 35, fontWeight: FontWeight.bold, color: dark)),
                                     const SizedBox(width: 10),
-                                    Text(item["by"], style: GoogleFonts.itim(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
+                                    Text(item["by"], style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
                                   ],
                                 ),
                                 const SizedBox(height: 20),
                                 for (final String plan in item["plans"]) ...<Widget>[
-                                  Text(plan, style: GoogleFonts.itim(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
+                                  Text(plan, style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
                                   if (plan != item["plans"].last) const SizedBox(height: 10),
                                 ],
                               ],

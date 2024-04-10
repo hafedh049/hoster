@@ -36,9 +36,9 @@ class _HomeState extends State<Home> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Your Web Hosting Partner", style: GoogleFonts.itim(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
+                    Text("Your Web Hosting Partner", style: GoogleFonts.abel(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 20),
-                    Text("No contracts or unwanted fees. Get your Server up and running now!", style: GoogleFonts.itim(color: dark, fontSize: 25, fontWeight: FontWeight.w500)),
+                    Text("No contracts or unwanted fees. Get your Server up and running now!", style: GoogleFonts.abel(color: dark, fontSize: 25, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 20),
                     AnimatedButton(
                       width: 250,
@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
                       isReverse: true,
                       selectedBackgroundColor: lightWhite,
                       transitionType: TransitionType.BOTTOM_TO_TOP,
-                      textStyle: GoogleFonts.itim(color: yellow, fontSize: 16, fontWeight: FontWeight.w500),
+                      textStyle: GoogleFonts.abel(color: yellow, fontSize: 16, fontWeight: FontWeight.w500),
                       onPress: () {},
                     ),
                   ],
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("What our customers say?", style: GoogleFonts.itim(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
+              Text("What our customers say?", style: GoogleFonts.abel(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
               const SizedBox(height: 30),
               Wrap(
                 alignment: WrapAlignment.center,
@@ -99,9 +99,9 @@ class _HomeState extends State<Home> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(item["quote"], style: GoogleFonts.itim(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
+                                Text(item["quote"], style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
                                 const SizedBox(height: 20),
-                                Text(item["owner"], style: GoogleFonts.itim(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.grey)),
+                                Text(item["owner"], style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.grey)),
                               ],
                             ),
                           ),

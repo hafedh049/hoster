@@ -103,7 +103,7 @@ class _HeaderState extends State<Header> {
                                     const SizedBox(width: 10),
                                     AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.itim(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _headers[index]["state"] ? dark : lightWhite),
+                                      style: GoogleFonts.abel(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _headers[index]["state"] ? dark : lightWhite),
                                       child: Text(_headers[index]["title"]),
                                     ),
                                   ],
