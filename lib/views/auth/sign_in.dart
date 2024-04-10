@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hoster/utils/shared.dart';
+import 'package:hoster/views/admin/holder.dart';
 import 'package:hoster/views/auth/sign_up.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -114,7 +115,7 @@ class _SignInState extends State<SignIn> {
                     selectedBackgroundColor: lightWhite,
                     transitionType: TransitionType.BOTTOM_TO_TOP,
                     textStyle: GoogleFonts.itim(color: yellow, fontSize: 16, fontWeight: FontWeight.w500),
-                    onPress: () {},
+                    onPress: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Holder())),
                   ),
                   const SizedBox(height: 20),
                   Flexible(child: Center(child: Image.asset("assets/images/home_providers.png"))),
