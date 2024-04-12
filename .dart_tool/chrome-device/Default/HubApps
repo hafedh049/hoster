@@ -1715,8 +1715,10 @@
       "auto_show": {
          "enabled": true,
          "fre_notification": {
-            "enabled": false,
-            "header": "Using Skype"
+            "enabled": true,
+            "header": "We opened the side pane so you can continue your conversation here",
+            "show_count": 3,
+            "text": "We opened the side pane so you can continue your conversation here"
          },
          "settings_description": "When you open a link from a chat in Skype, the side pane will automatically open to show the chat for context.",
          "settings_title": "Automatically open Skype chat links in the side pane"
@@ -1741,9 +1743,9 @@
       "disabled|device:xbox": true,
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_dark.png/1.4.23/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_hc.png/1.4.23/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_light.png/1.4.23/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_dark.png/1.5.24/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_hc.png/1.5.24/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_light.png/1.5.24/asset"
          }
       },
       "id": "439642fc-998d-4a64-8bb6-940ecaf6b60b",
@@ -1766,7 +1768,7 @@
          "url|flight:msEdgeHubAppSkypeCanary": "https://web.skype.com/?browsername=edge_canary_shoreline"
       },
       "trusted_domains": [ "live.com", "office.com", "microsoftonline.com", "microsoft.com", "office365.com", "sharepoint-df.com", "skype.com" ],
-      "version": "1.4.23"
+      "version": "1.5.24"
    }, {
       "default_locale": "en",
       "description": "Improve browser performance and save battery",
