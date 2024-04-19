@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoster/views/auth/sign_up.dart';
 
 import '../../utils/shared.dart';
 
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
                       selectedBackgroundColor: lightWhite,
                       transitionType: TransitionType.BOTTOM_TO_TOP,
                       textStyle: GoogleFonts.abel(color: yellow, fontSize: 16, fontWeight: FontWeight.w500),
-                      onPress: () {},
+                      onPress: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SignUp())),
                     ),
                   ],
                 ),

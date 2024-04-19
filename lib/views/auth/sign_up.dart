@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:date_format/date_format.dart';
 import 'package:date_picker_plus/date_picker_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,8 +26,6 @@ class _SignUpState extends State<SignUp> {
 
   bool _gender = false;
 
-  String _areyoua = "Student";
-
   DateTime _birthdate = DateTime.now();
 
   bool _agree = false;
@@ -40,6 +37,18 @@ class _SignUpState extends State<SignUp> {
     _firstNameController.dispose();
     _lastNameController.dispose();
     super.dispose();
+  }
+
+  void _signUp() async {
+    final Response response = await Dio().get(
+      "localhost/backend/register.php",
+      data: <String, dynamic>{
+        "name":,"email":
+        ,"password":,
+        "role":"","birthdate":"",
+
+      },
+    );
   }
 
   @override
@@ -195,29 +204,6 @@ class _SignUpState extends State<SignUp> {
                         borderColor: lightWhite,
                         indicatorColor: yellow,
                         borderRadius: BorderRadius.circular(5),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 20),
-                Text("Which one are you", style: GoogleFonts.abel(color: lightWhite, fontSize: 20, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 10),
-                StatefulBuilder(
-                  builder: (BuildContext context, void Function(void Function()) _) {
-                    return AnimatedToggleSwitch<String>.rolling(
-                      current: _areyoua,
-                      values: const <String>["Student", "Professional"],
-                      onChanged: (String item) => _(() => _areyoua = item),
-                      style: ToggleStyle(
-                        backgroundColor: dark.withOpacity(.1),
-                        borderColor: lightWhite,
-                        indicatorColor: yellow,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      indicatorSize: const Size.fromWidth(100),
-                      customIconBuilder: (BuildContext context, RollingProperties<String> local, DetailedGlobalToggleProperties<String> global) => Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(local.value, style: GoogleFonts.abel(color: lightWhite, fontSize: 16, fontWeight: FontWeight.bold)),
                       ),
                     );
                   },

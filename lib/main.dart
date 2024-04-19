@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hoster/views/auth/sign_in.dart';
+import 'package:hoster/views/client/holder.dart';
 
 void main() {
   runApp(const Main());
@@ -13,7 +13,7 @@ class Main extends StatelessWidget {
     return const MaterialApp(
       title: "Web Hosting",
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: Holder(),
     );
   }
 }
