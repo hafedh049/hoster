@@ -4,12 +4,34 @@ final class UserModel {
   final String email;
   final String password;
   final String clientType;
+  final String gender;
 
-  UserModel({required this.uid, required this.name, required this.email, required this.password, required this.clientType});
+  UserModel({
+    required this.gender,
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.clientType,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(uid: json['uid'], name: json['name'], email: json['email'], password: json['password'], clientType: json['type']);
+    return UserModel(
+      uid: json['uid'],
+      name: json['name'],
+      email: json['email'],
+      password: json['password'],
+      clientType: json['type'],
+      gender: json['gender'],
+    );
   }
 
-  Map<String, dynamic> toJson() => <String, dynamic>{'uid': uid, 'name': name, 'email': email, 'password': password, 'type': clientType};
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'uid': uid,
+        'name': name,
+        'email': email,
+        'password': password,
+        'type': clientType,
+        'gender': gender,
+      };
 }

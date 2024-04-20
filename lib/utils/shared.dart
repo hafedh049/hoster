@@ -82,3 +82,5 @@ const List<String> columns = <String>["UID", "NAME", "E-MAIL", "PASSWORD", "CLIE
 const List<UserModel> users = <UserModel>[];
 
 final GlobalKey<State<StatefulWidget>> pagerKey = GlobalKey<State<StatefulWidget>>();
+
+UserModel? user;
