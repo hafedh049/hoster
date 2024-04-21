@@ -78,9 +78,6 @@ int currentScreen = 0;
 
 final PageController screensController = PageController(initialPage: currentScreen);
 
-const List<String> columns = <String>["UID", "NAME", "E-MAIL", "PASSWORD", "CLIENT TYPE", "ACTIONS"];
-const List<UserModel> users = <UserModel>[];
-
 final GlobalKey<State<StatefulWidget>> pagerKey = GlobalKey<State<StatefulWidget>>();
 
 UserModel? user;

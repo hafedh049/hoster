@@ -1,8 +1,9 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/user_model.dart';
 import '../../utils/shared.dart';
-import 'data_sources.dart';
+import 'user_sources.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({super.key});
@@ -19,6 +20,9 @@ class UsersListState extends State<UsersList> with RestorationMixin {
   bool _initialized = false;
   final TextEditingController _searchController = TextEditingController();
 
+  final List<String> _columns = <String>["UID", "NAME", "E-MAIL", "PASSWORD", "CLIENT TYPE", "ACTIONS"];
+  final List<UserModel> _users = <UserModel>[];
+
   @override
   String get restorationId => 'paginated_user_table';
 
@@ -29,7 +33,7 @@ class UsersListState extends State<UsersList> with RestorationMixin {
     registerForRestoration(_rowsPerPage, 'rows_per_page');
 
     if (!_initialized) {
-      _usersDataSource = UserDataSource(context, users);
+      _usersDataSource = UserDataSource(context, _users);
       _initialized = true;
     }
   }
@@ -38,7 +42,7 @@ class UsersListState extends State<UsersList> with RestorationMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_initialized) {
-      _usersDataSource = UserDataSource(context, users);
+      _usersDataSource = UserDataSource(context, _users);
       _initialized = true;
     }
   }
@@ -56,7 +60,7 @@ class UsersListState extends State<UsersList> with RestorationMixin {
     return StatefulBuilder(
       key: pagerKey,
       builder: (BuildContext context, void Function(void Function()) _) {
-        _usersDataSource = UserDataSource(context, users);
+        _usersDataSource = UserDataSource(context, _users);
         return PaginatedDataTable2(
           minWidth: 1500, //2450,
           showCheckboxColumn: false,
@@ -66,7 +70,7 @@ class UsersListState extends State<UsersList> with RestorationMixin {
           onRowsPerPageChanged: (int? value) => _(() => _rowsPerPage.value = value!),
           initialFirstRowIndex: _rowIndex.value,
           onPageChanged: (int rowIndex) => _(() => _rowIndex.value = rowIndex),
-          columns: <DataColumn2>[for (final String column in columns) DataColumn2(label: Text(column), fixedWidth: null, size: ColumnSize.L)],
+          columns: <DataColumn2>[for (final String column in _columns) DataColumn2(label: Text(column), fixedWidth: null, size: ColumnSize.L)],
           source: _usersDataSource,
           isHorizontalScrollBarVisible: true,
         );
