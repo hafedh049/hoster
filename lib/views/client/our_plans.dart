@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoster/views/client/subscription.dart';
 
 import '../../utils/shared.dart';
 
@@ -77,6 +79,22 @@ class _OurPlansState extends State<OurPlans> {
                     },
                   ),
               ],
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: AnimatedButton(
+                width: 400,
+                text: 'See Subscriptions',
+                selectedTextColor: lightWhite,
+                animatedOn: AnimatedOn.onHover,
+                backgroundColor: teal,
+                borderRadius: 5,
+                isReverse: true,
+                selectedBackgroundColor: dark,
+                transitionType: TransitionType.BOTTOM_TO_TOP,
+                textStyle: GoogleFonts.abel(color: lightWhite, fontSize: 18, fontWeight: FontWeight.w500),
+                onPress: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Subscription())),
+              ),
             ),
           ],
         ),

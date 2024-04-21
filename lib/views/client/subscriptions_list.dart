@@ -15,7 +15,7 @@ class SubscriptionsList extends StatefulWidget {
 class SubscriptionsListState extends State<SubscriptionsList> with RestorationMixin {
   final RestorableSubscriptionSelections _subscriptionSelections = RestorableSubscriptionSelections();
   final RestorableInt _rowIndex = RestorableInt(0);
-  final RestorableInt _rowsPerPage = RestorableInt(PaginatedDataTable.defaultRowsPerPage + 10);
+  final RestorableInt _rowsPerPage = RestorableInt(3);
   late SubscriptionDataSource _subscriptionsDataSource;
   bool _initialized = false;
   final TextEditingController _searchController = TextEditingController();
@@ -63,17 +63,18 @@ class SubscriptionsListState extends State<SubscriptionsList> with RestorationMi
       builder: (BuildContext context, void Function(void Function()) _) {
         _subscriptionsDataSource = SubscriptionDataSource(context, _subscriptions);
         return PaginatedDataTable2(
-          minWidth: 1500, //2450,
+          //minWidth: 1500, //2450,
           showCheckboxColumn: false,
           showFirstLastButtons: true,
-          availableRowsPerPage: const <int>[20, 30],
+          availableRowsPerPage: const <int>[3, 5, 7, 10],
           rowsPerPage: _rowsPerPage.value,
           onRowsPerPageChanged: (int? value) => _(() => _rowsPerPage.value = value!),
           initialFirstRowIndex: _rowIndex.value,
           onPageChanged: (int rowIndex) => _(() => _rowIndex.value = rowIndex),
           columns: <DataColumn2>[for (final String column in _columns) DataColumn2(label: Text(column), fixedWidth: null, size: ColumnSize.L)],
           source: _subscriptionsDataSource,
-          isHorizontalScrollBarVisible: true,
+          isHorizontalScrollBarVisible: false,
+          isVerticalScrollBarVisible: false,
         );
       },
     );
