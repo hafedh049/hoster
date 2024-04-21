@@ -2005,7 +2005,7 @@
          },
          "red_dot_notification_data|flight:msHubAppGameViewEnableCustomRedDotFooter": {
             "footer": {
-               "description": "__MSG_auto_show_footer_prompt__"
+               "description": "Discover tips and guides while you play"
             },
             "lifetime": "window"
          },

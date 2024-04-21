@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoster/models/message_model.dart';
 import 'package:hoster/utils/shared.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -11,7 +12,7 @@ class SmartBot extends StatefulWidget {
 }
 
 class _SmartBotState extends State<SmartBot> {
-  final List<Map<String, dynamic>> _messages = <Map<String, dynamic>>[];
+  final List<MessageModel> _messages = <MessageModel>[];
   final TextEditingController _messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,14 @@ class _SmartBotState extends State<SmartBot> {
             ),
             Expanded(
               child: ListView.separated(
-                itemBuilder: (BuildContext context, int index) => Container(),
+                itemBuilder: (BuildContext context, int index) => Row(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(_messages[index].message, style: GoogleFonts.abel(fontSize: 20, fontWeight: FontWeight.w500, color: dark)),
+                    ),
+                  ],
+                ),
                 separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
                 itemCount: _messages.length,
               ),
