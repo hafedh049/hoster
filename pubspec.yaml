@@ -16,7 +16,6 @@ dependencies:
   flutter_animate: ^4.5.0
   icons_plus: ^5.0.0
   toastification: ^1.2.1
-  dio: ^5.4.2+1
   lottie: ^3.1.0
   animated_flip_counter: ^0.3.4
   google_fonts: ^6.2.1
@@ -31,6 +30,7 @@ dependencies:
   data_table_2: ^2.5.12
   fl_chart: ^0.67.0
   pie_chart: ^5.4.0
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

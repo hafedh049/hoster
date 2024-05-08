@@ -21,7 +21,7 @@ final class UserModel {
       name: json['name'],
       email: json['email'],
       password: json['password'],
-      clientType: json['type'],
+      clientType: json['role'],
       gender: json['gender'],
     );
   }
@@ -31,7 +31,7 @@ final class UserModel {
         'name': name,
         'email': email,
         'password': password,
-        'type': clientType,
+        'role': clientType,
         'gender': gender,
       };
 }

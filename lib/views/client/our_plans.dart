@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoster/views/auth/sign_in.dart';
 import 'package:hoster/views/client/subscription.dart';
 
 import '../../utils/shared.dart';
@@ -45,7 +46,7 @@ class _OurPlansState extends State<OurPlans> {
                         highlightColor: transparent,
                         hoverColor: transparent,
                         onHover: (bool value) => _(() => item['state'] = value),
-                        onTap: () {},
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SignIn())),
                         child: AnimatedScale(
                           duration: 300.ms,
                           scale: item['state'] ? 1.2 : 1,

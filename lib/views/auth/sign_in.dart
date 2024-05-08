@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoster/models/user_model.dart';
+import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/utils/shared.dart';
-import 'package:hoster/views/client/holder.dart';
+import 'package:hoster/views/client/holder.dart' as client;
+import 'package:hoster/views/admin/holder.dart' as admin;
 import 'package:hoster/views/auth/sign_up.dart';
+import 'package:http/http.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class SignIn extends StatefulWidget {
@@ -19,6 +25,48 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _visibility = true;
+
+  Future<void> _signIn() async {
+    try {
+      final Response response = await post(
+        Uri.parse("http://localhost/backend/login.php"),
+        headers: <String, String>{'Content-Type': 'application/x-www-form-urlencoded'},
+        body: <String, dynamic>{
+          "email": _emailController.text,
+          "password": _passwordController.text,
+        },
+      );
+      if (response.statusCode == 200) {
+        final dynamic data = jsonDecode(response.body)["result"];
+        debugPrint("$data");
+        if (data is Map<String, dynamic>) {
+          user = UserModel.fromJson(data);
+          // ignore: use_build_context_synchronously
+          showToast(context, "Welcome");
+          Navigator.push(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => user!.uid == "0" ? const admin.Holder() : const client.Holder(),
+            ),
+          );
+        } else {
+          // ignore: use_build_context_synchronously
+          showToast(context, data, color: red);
+        }
+      } else {
+        // ignore: use_build_context_synchronously
+        showToast(context, "Something went wrong");
+        // Handle non-200 status codes (e.g., server errors)
+        debugPrint("Error: ${response.statusCode}");
+      }
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      showToast(context, e.toString(), color: red);
+      // Handle any other errors, such as network errors
+      debugPrint("Error: $e");
+    }
+  }
 
   @override
   void dispose() {
@@ -112,7 +160,7 @@ class _SignInState extends State<SignIn> {
                   selectedBackgroundColor: teal,
                   transitionType: TransitionType.BOTTOM_TO_TOP,
                   textStyle: GoogleFonts.abel(color: dark, fontSize: 16, fontWeight: FontWeight.w500),
-                  onPress: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => /*const Holder()*/ const Holder())),
+                  onPress: _signIn,
                 ),
                 const SizedBox(height: 20),
                 Flexible(child: Center(child: Image.asset("assets/images/home_providers.png"))),

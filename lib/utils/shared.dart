@@ -9,8 +9,6 @@ const Color teal = Color.fromARGB(255, 24, 124, 255);
 const Color yellow = Color.fromARGB(255, 253, 204, 4);
 const Color transparent = Colors.transparent;
 
-final DateTime blogUp = DateTime(2024, 02, 01, 00, 09, 00);
-
 final List<Map<String, dynamic>> says = <Map<String, dynamic>>[
   <String, dynamic>{
     "state": false,

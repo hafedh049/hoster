@@ -90,6 +90,7 @@ class _SubscriptionState extends State<Subscription> {
             ),
           ),
           Align(
+            alignment: Alignment.topLeft,
             child: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(FontAwesome.chevron_left_solid, color: yellow, size: 25),

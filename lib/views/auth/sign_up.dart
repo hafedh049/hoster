@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hoster/models/user_model.dart';
 import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/utils/shared.dart';
+import 'package:http/http.dart';
+import 'package:hoster/views/client/holder.dart' as client;
+import 'package:hoster/views/admin/holder.dart' as admin;
 import 'package:icons_plus/icons_plus.dart';
 
 class SignUp extends StatefulWidget {
@@ -29,50 +33,58 @@ class _SignUpState extends State<SignUp> {
 
   bool _agree = false;
 
+  Future<void> _signUp() async {
+    try {
+      final Map<String, dynamic> data = <String, dynamic>{
+        "email": _emailController.text,
+        "password": _passwordController.text,
+        "name": _fullNameController.text,
+        "gender": _gender ? 'M' : 'F',
+        "role": _role ? 'PERSONAL CLIENT' : 'ENTREPRISE CLIENT',
+      };
+      final Response response = await post(
+        Uri.parse("http://localhost/backend/register.php"),
+        headers: <String, String>{'Content-Type': 'application/x-www-form-urlencoded'},
+        body: data,
+      );
+      if (response.statusCode == 200) {
+        final dynamic id = jsonDecode(response.body)["result"];
+        debugPrint("$data");
+        if (data.isNotEmpty) {
+          user = UserModel.fromJson(data..addAll(<String, dynamic>{'uid': id}));
+          // ignore: use_build_context_synchronously
+          showToast(context, "Welcome");
+          Navigator.push(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => user!.uid == "0" ? const admin.Holder() : const client.Holder(),
+            ),
+          );
+        } else {
+          // ignore: use_build_context_synchronously
+          showToast(context, "User created successfully");
+        }
+      } else {
+        // ignore: use_build_context_synchronously
+        showToast(context, "Something went wrong");
+        // Handle non-200 status codes (e.g., server errors)
+        debugPrint("Error: ${response.statusCode}");
+      }
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      showToast(context, e.toString(), color: red);
+      // Handle any other errors, such as network errors
+      debugPrint("Error: $e");
+    }
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _fullNameController.dispose();
     super.dispose();
-  }
-
-  void _signUp() async {
-    if (_fullNameController.text.trim().isEmpty) {
-      showToast(context, "You must specify the full name");
-    } else if (_emailController.text.trim().isEmpty) {
-      showToast(context, "E-mail is required");
-    } else if (_passwordController.text.trim().isEmpty) {
-      showToast(context, "Password is mandatory");
-    } else {
-      final Response response = await Dio().post(
-        "localhost/backend/register.php",
-        data: <String, dynamic>{
-          "name": _fullNameController.text.trim(),
-          "email": _emailController.text.trim(),
-          "password": _passwordController.text.trim(),
-          "role": _role ? "Entreprise Client" : "Personal Client",
-          "gender": _gender ? "M" : "F",
-        },
-      );
-      if (response.data["status"] == true) {
-        user = UserModel.fromJson(
-          <String, dynamic>{
-            "uid": response.data["result"],
-            "name": _fullNameController.text.trim(),
-            "email": _emailController.text.trim(),
-            "password": _passwordController.text.trim(),
-            "role": _role ? "Entreprise Client" : "Personal Client",
-            "gender": _gender ? "M" : "F",
-          },
-        );
-        // ignore: use_build_context_synchronously
-        showToast(context, "User created successfully");
-      } else {
-        // ignore: use_build_context_synchronously
-        showToast(context, "Something wrong", color: red);
-      }
-    }
   }
 
   @override

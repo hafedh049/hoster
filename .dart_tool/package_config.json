@@ -116,12 +116,6 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "dio",
-      "rootUri": "file:///C:/Users/Dell/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.4.2+1",
-      "packageUri": "lib/",
-      "languageVersion": "2.15"
-    },
-    {
       "name": "equatable",
       "rootUri": "file:///C:/Users/Dell/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -542,7 +536,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-21T12:13:55.476614Z",
+  "generated": "2024-05-05T21:56:11.223746Z",
   "generator": "pub",
-  "generatorVersion": "3.3.3"
+  "generatorVersion": "3.3.4"
 }
