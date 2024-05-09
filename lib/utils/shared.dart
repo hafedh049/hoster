@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:hoster/models/user_model.dart';
 
 const Color lightWhite = Colors.white;
@@ -12,17 +13,20 @@ const Color transparent = Colors.transparent;
 final List<Map<String, dynamic>> says = <Map<String, dynamic>>[
   <String, dynamic>{
     "state": false,
-    "quote": '"Web Hosting Master has transformed our online presence. The speed and reliability are unmatched!"',
+    "quote":
+        '"Web Hosting Master has transformed our online presence. The speed and reliability are unmatched!"',
     "owner": "John Doe, Founder of Tech Innovations",
   },
   <String, dynamic>{
     "state": false,
-    "quote": "\"Exceptional service! Web Hosting Master's support team is always ready to assist, making our experience seamless.\"",
+    "quote":
+        "\"Exceptional service! Web Hosting Master's support team is always ready to assist, making our experience seamless.\"",
     "owner": "Jane Smith, CTO of Digital Solutions",
   },
   <String, dynamic>{
     "state": false,
-    "quote": "\"Choosing Web Hosting Master was a game-changer for us. The features and performance exceeded our expectations\"",
+    "quote":
+        "\"Choosing Web Hosting Master was a game-changer for us. The features and performance exceeded our expectations\"",
     "owner": "Robert Johnson, Marketing Director at Global Ventures",
   },
 ];
@@ -74,8 +78,12 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
 
 int currentScreen = 0;
 
-final PageController screensController = PageController(initialPage: currentScreen);
+final PageController screensController =
+    PageController(initialPage: currentScreen);
 
-final GlobalKey<State<StatefulWidget>> pagerKey = GlobalKey<State<StatefulWidget>>();
+final GlobalKey<State<StatefulWidget>> pagerKey =
+    GlobalKey<State<StatefulWidget>>();
 
 UserModel? user;
+
+Box? db;

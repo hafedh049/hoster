@@ -61,15 +61,6 @@ class _SubscriptionState extends State<Subscription> {
                   const SizedBox(height: 20),
                   const Flexible(child: SubscriptionsList()),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text("Total Price: ", style: GoogleFonts.abel(fontSize: 20, fontWeight: FontWeight.bold, color: dark)),
-                      const SizedBox(width: 5),
-                      Text("2168.50 DT", style: GoogleFonts.abel(fontSize: 20, fontWeight: FontWeight.w500, color: dark)),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
                   Center(
                     child: AnimatedButton(
                       width: 400,

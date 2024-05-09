@@ -29,7 +29,9 @@ class _OurPlansState extends State<OurPlans> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 80),
-            Text("Choose your plan", style: GoogleFonts.abel(color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
+            Text("Choose your plan",
+                style: GoogleFonts.abel(
+                    color: dark, fontSize: 35, fontWeight: FontWeight.bold)),
             const SizedBox(height: 30),
             Wrap(
               alignment: WrapAlignment.center,
@@ -40,37 +42,62 @@ class _OurPlansState extends State<OurPlans> {
               children: <Widget>[
                 for (final Map<String, dynamic> item in plans)
                   StatefulBuilder(
-                    builder: (BuildContext context, void Function(void Function()) _) {
+                    builder: (BuildContext context,
+                        void Function(void Function()) _) {
                       return InkWell(
                         splashColor: transparent,
                         highlightColor: transparent,
                         hoverColor: transparent,
                         onHover: (bool value) => _(() => item['state'] = value),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SignIn())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const SignIn())),
                         child: AnimatedScale(
                           duration: 300.ms,
                           scale: item['state'] ? 1.2 : 1,
                           child: Container(
                             width: 250,
                             padding: const EdgeInsets.all(24),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: yellow),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: yellow),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(item["title"], style: GoogleFonts.abel(fontSize: 25, fontWeight: FontWeight.w500, color: dark)),
+                                Text(item["title"],
+                                    style: GoogleFonts.abel(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w500,
+                                        color: dark)),
                                 const SizedBox(height: 20),
                                 Row(
                                   children: <Widget>[
-                                    Text(item["price"], style: GoogleFonts.abel(fontSize: 35, fontWeight: FontWeight.bold, color: dark)),
+                                    Text(item["price"],
+                                        style: GoogleFonts.abel(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold,
+                                            color: dark)),
                                     const SizedBox(width: 10),
-                                    Text(item["by"], style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
+                                    Text(item["by"],
+                                        style: GoogleFonts.abel(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: dark)),
                                   ],
                                 ),
                                 const SizedBox(height: 20),
-                                for (final String plan in item["plans"]) ...<Widget>[
-                                  Text(plan, style: GoogleFonts.abel(fontSize: 18, fontWeight: FontWeight.w500, color: dark)),
-                                  if (plan != item["plans"].last) const SizedBox(height: 10),
+                                for (final String plan
+                                    in item["plans"]) ...<Widget>[
+                                  Text(plan,
+                                      style: GoogleFonts.abel(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: dark)),
+                                  if (plan != item["plans"].last)
+                                    const SizedBox(height: 10),
                                 ],
                               ],
                             ),
@@ -81,22 +108,31 @@ class _OurPlansState extends State<OurPlans> {
                   ),
               ],
             ),
-            const SizedBox(height: 20),
-            Center(
-              child: AnimatedButton(
-                width: 400,
-                text: 'See Subscriptions',
-                selectedTextColor: lightWhite,
-                animatedOn: AnimatedOn.onHover,
-                backgroundColor: teal,
-                borderRadius: 5,
-                isReverse: true,
-                selectedBackgroundColor: dark,
-                transitionType: TransitionType.BOTTOM_TO_TOP,
-                textStyle: GoogleFonts.abel(color: lightWhite, fontSize: 18, fontWeight: FontWeight.w500),
-                onPress: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Subscription())),
+            if (db!.get("login_state")) ...<Widget>[
+              const SizedBox(height: 20),
+              Center(
+                child: AnimatedButton(
+                  width: 400,
+                  text: 'See Subscriptions',
+                  selectedTextColor: lightWhite,
+                  animatedOn: AnimatedOn.onHover,
+                  backgroundColor: teal,
+                  borderRadius: 5,
+                  isReverse: true,
+                  selectedBackgroundColor: dark,
+                  transitionType: TransitionType.BOTTOM_TO_TOP,
+                  textStyle: GoogleFonts.abel(
+                      color: lightWhite,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                  onPress: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const Subscription())),
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

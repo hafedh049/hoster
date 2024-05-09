@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/views/client/holder.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  init();
   runApp(const Main());
 }
 
