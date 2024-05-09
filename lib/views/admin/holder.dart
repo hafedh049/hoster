@@ -5,7 +5,6 @@ import 'package:hoster/utils/shared.dart';
 import 'package:hoster/views/admin/dashboard.dart';
 import 'package:hoster/views/admin/settings.dart';
 import 'package:hoster/views/admin/users_list.dart';
-import 'package:hoster/views/client/holder.dart' as client;
 
 class Holder extends StatefulWidget {
   const Holder({super.key});
@@ -33,11 +32,8 @@ class _HolderState extends State<Holder> {
         "state": false,
       },
       <String, dynamic>{
-        "title": "LOGOUT",
-        "callback": () => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const client.Holder()),
-            (Route _) => false),
+        "title": "SETTINGS",
+        "callback": () => _tabsController.jumpToPage(2),
         "state": false,
       },
     ];
@@ -61,13 +57,10 @@ class _HolderState extends State<Holder> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Welcome to the Admin Panel",
-                style: GoogleFonts.abel(
-                    color: dark, fontSize: 55, fontWeight: FontWeight.bold)),
+            Text("Welcome to the Admin Panel", style: GoogleFonts.abel(color: dark, fontSize: 55, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             StatefulBuilder(
-              builder:
-                  (BuildContext context, void Function(void Function()) _) {
+              builder: (BuildContext context, void Function(void Function()) _) {
                 return Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -76,29 +69,19 @@ class _HolderState extends State<Holder> {
                         splashColor: transparent,
                         highlightColor: transparent,
                         hoverColor: transparent,
-                        onHover: (bool value) =>
-                            _(() => _tabs[index]["state"] = value),
+                        onHover: (bool value) => _(() => _tabs[index]["state"] = value),
                         onTap: _tabs[index]["callback"],
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             AnimatedContainer(
                               duration: 300.ms,
-                              margin: index == _tabs.length - 1
-                                  ? null
-                                  : const EdgeInsets.only(right: 20),
+                              margin: index == _tabs.length - 1 ? null : const EdgeInsets.only(right: 20),
                               padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                  color: _tabs[index]["state"] ? dark : yellow,
-                                  borderRadius: BorderRadius.circular(5)),
+                              decoration: BoxDecoration(color: _tabs[index]["state"] ? dark : yellow, borderRadius: BorderRadius.circular(5)),
                               child: AnimatedDefaultTextStyle(
                                 duration: 300.ms,
-                                style: GoogleFonts.abel(
-                                    letterSpacing: 2,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color:
-                                        _tabs[index]["state"] ? yellow : dark),
+                                style: GoogleFonts.abel(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _tabs[index]["state"] ? yellow : dark),
                                 child: Text(_tabs[index]["title"]),
                               ),
                             ),
