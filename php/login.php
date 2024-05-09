@@ -4,7 +4,6 @@ $db_host = 'localhost';
 $db_username = 'root';
 $db_password = '';
 $db_name = 'db';
-
 $email = $_POST['email']; // Assuming you're getting username and password from a form
 $password = $_POST['password']; // Assuming you're getting username and password from a form
 $hashed_password = sha1($password);
