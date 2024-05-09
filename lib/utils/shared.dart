@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hoster/models/user_model.dart';
+import 'package:hive/hive.dart';
 
 const Color lightWhite = Colors.white;
 const Color darkWhite = Color.fromARGB(255, 149, 149, 162);
@@ -33,6 +33,7 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
     "title": "Starter",
     "price": "19 TND",
     "by": "/month",
+    "duration": "1",
     "plans": const <String>[
       "1 Website",
       "10GB Disk Space",
@@ -47,6 +48,7 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
     "title": "Advanced",
     "price": "49 TND",
     "by": "/month",
+    "duration": "1",
     "plans": const <String>[
       "5 Websites",
       "50GB Disk Space",
@@ -61,6 +63,7 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
     "title": "Premium",
     "price": "99 TND",
     "by": "/month",
+    "duration": "1",
     "plans": const <String>[
       "50 Websites",
       "100GB Disk Space",
@@ -74,8 +77,6 @@ final List<Map<String, dynamic>> plans = <Map<String, dynamic>>[
 
 int currentScreen = 0;
 
-final PageController screensController = PageController(initialPage: currentScreen);
-
 final GlobalKey<State<StatefulWidget>> pagerKey = GlobalKey<State<StatefulWidget>>();
 
-UserModel? user;
+Box? db;

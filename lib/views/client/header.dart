@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,41 +5,47 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:hoster/utils/shared.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
-
+  const Header({super.key, required this.controller});
+  final PageController controller;
   @override
   State<Header> createState() => _HeaderState();
 }
 
 class _HeaderState extends State<Header> {
-  final List<Map<String, dynamic>> _headers = <Map<String, dynamic>>[
-    <String, dynamic>{
-      "title": "HOME",
-      "icon": FontAwesome.house_solid,
-      "callback": () => screensController.jumpToPage(0),
-      "state": false,
-    },
-    <String, dynamic>{
-      "title": "ABOUT US",
-      "icon": FontAwesome.box_archive_solid,
-      "callback": () => screensController.jumpToPage(1),
-      "state": false,
-    },
-    <String, dynamic>{
-      "title": "CONTACT",
-      "icon": FontAwesome.folder_solid,
-      "callback": () => screensController.jumpToPage(2),
-      "state": false,
-    },
-    <String, dynamic>{
-      "title": "OUR PLANS",
-      "icon": FontAwesome.user_solid,
-      "callback": () => screensController.jumpToPage(3),
-      "state": false,
-    },
-  ];
+  List<Map<String, dynamic>> _headers = <Map<String, dynamic>>[];
 
   bool _titleState = false;
+
+  @override
+  void initState() {
+    _headers = <Map<String, dynamic>>[
+      <String, dynamic>{
+        "title": "HOME",
+        "icon": FontAwesome.house_solid,
+        "callback": () => widget.controller.jumpToPage(0),
+        "state": false,
+      },
+      <String, dynamic>{
+        "title": "ABOUT US",
+        "icon": FontAwesome.box_archive_solid,
+        "callback": () => widget.controller.jumpToPage(1),
+        "state": false,
+      },
+      <String, dynamic>{
+        "title": "CONTACT",
+        "icon": FontAwesome.folder_solid,
+        "callback": () => widget.controller.jumpToPage(2),
+        "state": false,
+      },
+      <String, dynamic>{
+        "title": "OUR PLANS",
+        "icon": FontAwesome.user_solid,
+        "callback": () => widget.controller.jumpToPage(3),
+        "state": false,
+      },
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

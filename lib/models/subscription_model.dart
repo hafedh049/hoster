@@ -1,33 +1,25 @@
 final class SubscriptionModel {
-  final String id;
-  final String name;
-  final DateTime startDate;
-  final DateTime endDate;
-  final double price;
+  final String subscriptionID;
+  final int totalPrice;
+  final int planDuration;
+  final DateTime subscriptionDate;
+  final String planName;
 
   SubscriptionModel({
-    required this.id,
-    required this.name,
-    required this.startDate,
-    required this.endDate,
-    required this.price,
+    required this.subscriptionID,
+    required this.totalPrice,
+    required this.planDuration,
+    required this.subscriptionDate,
+    required this.planName,
   });
 
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) {
     return SubscriptionModel(
-      id: json['id'],
-      name: json['name'],
-      startDate: json['startDate'],
-      endDate: json['endDate'],
-      price: json['price'],
+      subscriptionID: json['subscription_id'],
+      totalPrice: json['total_price'],
+      planDuration: json['plan_duration'],
+      subscriptionDate: DateTime.parse(json['subscription_date']),
+      planName: json['plan_name'],
     );
   }
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'name': name,
-        'startDate': startDate,
-        'endDate': endDate,
-        'price': price,
-      };
 }

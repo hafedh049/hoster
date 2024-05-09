@@ -4,7 +4,6 @@ import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hoster/models/user_model.dart';
 import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/utils/shared.dart';
 import 'package:hoster/views/client/holder.dart' as client;
@@ -40,14 +39,16 @@ class _SignInState extends State<SignIn> {
         final dynamic data = jsonDecode(response.body)["result"];
         debugPrint("$data");
         if (data is Map<String, dynamic>) {
-          user = UserModel.fromJson(data);
           // ignore: use_build_context_synchronously
           showToast(context, "Welcome");
+          db!.put("login_state", true);
+          db!.putAll(data);
+
           Navigator.push(
             // ignore: use_build_context_synchronously
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => user!.uid == "0" ? const admin.Holder() : const client.Holder(),
+              builder: (BuildContext context) => db!.get("uid") == "0" ? const admin.Holder() : const client.Holder(),
             ),
           );
         } else {

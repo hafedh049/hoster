@@ -4,12 +4,10 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hoster/models/user_model.dart';
 import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/utils/shared.dart';
 import 'package:http/http.dart';
 import 'package:hoster/views/client/holder.dart' as client;
-import 'package:hoster/views/admin/holder.dart' as admin;
 import 'package:icons_plus/icons_plus.dart';
 
 class SignUp extends StatefulWidget {
@@ -51,15 +49,15 @@ class _SignUpState extends State<SignUp> {
         final dynamic id = jsonDecode(response.body)["result"];
         debugPrint("$data");
         if (data.isNotEmpty) {
-          user = UserModel.fromJson(data..addAll(<String, dynamic>{'uid': id}));
+          data.addAll(<String, dynamic>{'uid': id});
           // ignore: use_build_context_synchronously
           showToast(context, "Welcome");
+          db!.put("login_state", true);
+          db!.putAll(data);
           Navigator.push(
             // ignore: use_build_context_synchronously
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => user!.uid == "0" ? const admin.Holder() : const client.Holder(),
-            ),
+            MaterialPageRoute(builder: (BuildContext context) => const client.Holder()),
           );
         } else {
           // ignore: use_build_context_synchronously

@@ -15,6 +15,8 @@ class Holder extends StatefulWidget {
 }
 
 class _HolderState extends State<Holder> {
+  final PageController _screensController = PageController(initialPage: currentScreen);
+
   final List<Widget> _screens = <Widget>[
     const Home(),
     const AboutUs(),
@@ -27,13 +29,13 @@ class _HolderState extends State<Holder> {
       body: Stack(
         children: <Widget>[
           PageView.builder(
-            controller: screensController,
+            controller: _screensController,
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) => _screens[index],
             itemCount: _screens.length,
           ),
-          const Header(),
+          Header(controller: _screensController),
         ],
       ),
     );
