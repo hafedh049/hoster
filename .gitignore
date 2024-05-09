@@ -6,7 +6,7 @@ bin-release/
 
 # Other files and folders
 .settings/
-WEBDAV/
+/dart_tool/
 web/
 test/
 # Executables
