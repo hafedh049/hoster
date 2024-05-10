@@ -34,7 +34,12 @@ class _HolderState extends State<Holder> {
       },
       <String, dynamic>{
         "title": "LOGOUT",
-        "callback": () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const client.Holder()), (Route route) => false),
+        "callback": () async {
+          await db!.clear();
+          await db!.put("login_state", false);
+          // ignore: use_build_context_synchronously
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const client.Holder()), (Route route) => false);
+        },
         "state": false,
       },
     ];

@@ -17,6 +17,7 @@ void showToast(BuildContext context, String message, {Color color = teal}) {
 void init() async {
   Hive.init(null);
   db = await Hive.openBox("db");
+  await db!.clear();
   if (db!.isEmpty) {
     db!.put("login_state", false);
   }

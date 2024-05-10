@@ -81,10 +81,17 @@ class UserDataSource extends DataTableSource {
           onTap: () => showToast(context, "Can't copy password's hash"),
         ),
         DataCell(
-          Tooltip(message: user.clientType, child: Text(user.clientType)),
+          Tooltip(message: user.gender, child: Text(user.gender)),
           onTap: () async {
             await Clipboard.setData(ClipboardData(text: user.name));
             showToast(context, "Client type has been copied to clipboard");
+          },
+        ),
+        DataCell(
+          Tooltip(message: user.gender, child: Text(user.gender)),
+          onTap: () async {
+            await Clipboard.setData(ClipboardData(text: user.gender));
+            showToast(context, "Gender has been copied to clipboard");
           },
         ),
         DataCell(
