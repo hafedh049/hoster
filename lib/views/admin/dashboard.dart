@@ -59,7 +59,7 @@ class _DashboardState extends State<Dashboard> {
         for (final String key in dataa['Sales per year']!.keys) {
           _x['Sales per year'][key] = dataa['Sales per year']!.keys.toList().indexOf(key);
         }
-        print(dataa);
+        print(_x);
         return data;
       } else {
         return <String, Map<String, dynamic>>{

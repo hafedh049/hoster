@@ -24,7 +24,8 @@ try {
         'total_price'=>$subscription['total_price'],
         'plan_duration'=>$subscription['plan_duration'],
         'subscription_date'=>$subscription['subscription_date'],
-        'plan_name'=>$subscription['plan_name']);
+        'plan_name'=>$subscription['plan_name'],
+         'user_id'=>$subscription['user_id']);
     }
     echo json_encode(array('result'=>$a,'status'=>200));
 } catch(PDOException $e) {
