@@ -5,6 +5,7 @@ import 'package:hoster/utils/shared.dart';
 import 'package:hoster/views/admin/dashboard.dart';
 import 'package:hoster/views/admin/settings.dart';
 import 'package:hoster/views/admin/users_list.dart';
+import 'package:hoster/views/client/holder.dart' as client;
 
 class Holder extends StatefulWidget {
   const Holder({super.key});
@@ -32,8 +33,8 @@ class _HolderState extends State<Holder> {
         "state": false,
       },
       <String, dynamic>{
-        "title": "SETTINGS",
-        "callback": () => _tabsController.jumpToPage(2),
+        "title": "LOGOUT",
+        "callback": () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const client.Holder()), (Route route) => false),
         "state": false,
       },
     ];
