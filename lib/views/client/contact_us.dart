@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:emailjs/emailjs.dart';
+import 'package:hoster/utils/callbacks.dart';
 import 'package:hoster/utils/shared.dart';
 
 class ContactUs extends StatefulWidget {
@@ -23,6 +25,42 @@ class _ContactUsState extends State<ContactUs> {
     _subjectController.dispose();
     _messageController.dispose();
     super.dispose();
+  }
+
+  Future<void> sendMail() async {
+    if (_nameController.text.trim().isEmpty) {
+      showToast(context, "Name field is empty");
+    } else if (_emailController.text.trim().isEmpty) {
+      showToast(context, "E-mail field is empty");
+    } else if (_subjectController.text.trim().isEmpty) {
+      showToast(context, "Subject field is empty");
+    } else if (_messageController.text.trim().isEmpty) {
+      showToast(context, "Message field is empty");
+    } else {
+      final Map<String, String> templateParams = <String, String>{
+        'user_name': _nameController.text.trim(),
+        'user_email': _emailController.text.trim(),
+        'user_subject': _emailController.text.trim(),
+        "user_message": _messageController.text.trim(),
+      };
+
+      try {
+        await EmailJS.send(
+          'service_l3saemi',
+          'template_if571r6',
+          templateParams,
+          const Options(
+            publicKey: 'Q63Rs2gA9msOLDXPm',
+            privateKey: '_oQ4U9Vqj0xKwbFeT_b-9',
+          ),
+        );
+        // ignore: use_build_context_synchronously
+        showToast(context, 'THE TECH SUPPORT WILL RESPOND AS SOON AS POSSIBLE!');
+      } catch (error) {
+        // ignore: use_build_context_synchronously
+        showToast(context, error.toString());
+      }
+    }
   }
 
   @override
@@ -120,7 +158,7 @@ class _ContactUsState extends State<ContactUs> {
                 selectedBackgroundColor: dark,
                 transitionType: TransitionType.BOTTOM_TO_TOP,
                 textStyle: GoogleFonts.abel(color: lightWhite, fontSize: 18, fontWeight: FontWeight.w500),
-                onPress: () {},
+                onPress: sendMail,
               ),
             ),
             const SizedBox(height: 20),
