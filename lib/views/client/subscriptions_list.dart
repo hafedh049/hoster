@@ -19,7 +19,7 @@ class SubscriptionsList extends StatefulWidget {
 class SubscriptionsListState extends State<SubscriptionsList> with RestorationMixin {
   final RestorableSubscriptionSelections _subscriptionSelections = RestorableSubscriptionSelections();
   final RestorableInt _rowIndex = RestorableInt(0);
-  final RestorableInt _rowsPerPage = RestorableInt(3);
+  final RestorableInt _rowsPerPage = RestorableInt(7);
   late SubscriptionDataSource _subscriptionsDataSource;
   bool _initialized = false;
   final TextEditingController _searchController = TextEditingController();
@@ -56,15 +56,12 @@ class SubscriptionsListState extends State<SubscriptionsList> with RestorationMi
     try {
       final Response response = await post(
         Uri.parse("http://localhost/backend/fetch_subscriptions.php"),
+        body: <String, dynamic>{"user_id": db!.get("uid")},
         headers: <String, String>{'Content-Type': 'application/x-www-form-urlencoded'},
       );
       if (response.statusCode == 200) {
         final dynamic data = jsonDecode(response.body)["result"];
         data.cast<Map<String, dynamic>>();
-        debugPrint("$data");
-        // ignore: use_build_context_synchronously
-        showToast(context, "Subscription plan has been added.");
-
         return data;
       } else {
         // ignore: use_build_context_synchronously

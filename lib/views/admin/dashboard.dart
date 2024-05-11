@@ -59,7 +59,6 @@ class _DashboardState extends State<Dashboard> {
         for (final String key in dataa['Sales per year']!.keys) {
           _x['Sales per year'][key] = dataa['Sales per year']!.keys.toList().indexOf(key);
         }
-        print(_x);
         return data;
       } else {
         return <String, Map<String, dynamic>>{
@@ -134,7 +133,7 @@ class _DashboardState extends State<Dashboard> {
                         child: AnimatedDefaultTextStyle(
                           duration: 300.ms,
                           style: GoogleFonts.abel(letterSpacing: 2, fontSize: 16, fontWeight: FontWeight.w500, color: _lineChartState ? yellow : dark),
-                          child: Text(_data.keys.elementAt(_lineChartIndex)),
+                          child: Text(_data.keys.elementAt(_lineChartIndex).replaceAll("_", " ").toUpperCase()),
                         ),
                       ),
                     ],
@@ -158,8 +157,14 @@ class _DashboardState extends State<Dashboard> {
                           titlesData: FlTitlesData(
                             rightTitles: const AxisTitles(sideTitles: SideTitles()),
                             topTitles: const AxisTitles(sideTitles: SideTitles()),
-                            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, TitleMeta meta) => value % 10 == 0 ? Text(value.toStringAsFixed(0)) : const SizedBox())),
-                            bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, TitleMeta meta) => Text(value.toStringAsFixed(0)))),
+                            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, TitleMeta meta) => value % 200 == 0 ? Text(value.toStringAsFixed(0)) : const SizedBox())),
+                            bottomTitles: AxisTitles(
+                              sideTitles: SideTitles(
+                                showTitles: true,
+                                getTitlesWidget: (double value, TitleMeta meta) => const Text("" //value.toInt() % 20 != 0 ? "" : _x[_x.keys.elementAt(_lineChartIndex)].keys.elementAt(value.toInt()),
+                                    ),
+                              ),
+                            ),
                           ),
                           lineBarsData: <LineChartBarData>[
                             LineChartBarData(

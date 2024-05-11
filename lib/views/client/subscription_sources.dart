@@ -1,12 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:flutter/services.dart';
 
 import '../../models/subscription_model.dart';
-import '../../utils/callbacks.dart';
 
 class RestorableSubscriptionSelections extends RestorableProperty<Set<int>> {
   Set<int> _subscriptionSelections = <int>{};
@@ -54,47 +50,16 @@ class SubscriptionDataSource extends DataTableSource {
       index: index,
       color: color != null ? MaterialStateProperty.all(color) : (hasZebraStripes && index.isEven ? MaterialStateProperty.all(Theme.of(context).highlightColor) : null),
       cells: <DataCell>[
+        DataCell(Text(subscription.subscriptionID)),
+        DataCell(Text(subscription.totalPrice.toString())),
+        DataCell(Text(subscription.planDuration.toString())),
+        DataCell(Text(formatDate(subscription.subscriptionDate, const <String>[dd, " ", MM, " ", yyyy]))),
         DataCell(
-          Tooltip(message: subscription.subscriptionID, child: Text(subscription.subscriptionID)),
-          onTap: () async {
-            await Clipboard.setData(ClipboardData(text: subscription.subscriptionID));
-            showToast(context, "ID has been copied to clipboard");
-          },
-        ),
-        DataCell(
-          Tooltip(message: subscription.totalPrice.toString(), child: Text(subscription.totalPrice.toString())),
-          onTap: () async {
-            await Clipboard.setData(ClipboardData(text: subscription.totalPrice.toStringAsFixed(2)));
-            showToast(context, "Name has been copied to clipboard");
-          },
-        ),
-        DataCell(
-          Tooltip(message: subscription.planDuration.toString(), child: Text(subscription.planDuration.toString())),
-          onTap: () async {
-            await Clipboard.setData(ClipboardData(text: subscription.planName.toString()));
-            showToast(context, "Start date has been copied to clipboard");
-          },
-        ),
-        DataCell(
-          Tooltip(message: subscription.subscriptionDate.toString(), child: Text(formatDate(subscription.subscriptionDate, const <String>[dd, MM, yyyy]))),
-          onTap: () async {
-            await Clipboard.setData(ClipboardData(text: subscription.subscriptionDate.toString()));
-            showToast(context, "End date has been copied to clipboard");
-          },
-        ),
-        DataCell(
-          Tooltip(
-            message: subscription.planName,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightGreenAccent.withOpacity(.5)),
-              child: Text(subscription.planName.toUpperCase()),
-            ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightGreenAccent.withOpacity(.5)),
+            child: Text(subscription.planName.toUpperCase()),
           ),
-          onTap: () async {
-            await Clipboard.setData(ClipboardData(text: subscription.planName));
-            showToast(context, "Price has been copied to clipboard");
-          },
         ),
       ],
     );

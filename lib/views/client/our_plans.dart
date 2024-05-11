@@ -55,15 +55,16 @@ class _OurPlansState extends State<OurPlans> {
                         hoverColor: transparent,
                         onHover: (bool value) => _(() => item['state'] = value),
                         onTap: () async {
-                          setState(() {});
                           if (db!.get("login_state")) {
                             try {
                               final Response response = await post(
                                 Uri.parse("http://localhost/backend/add_subscription.php"),
                                 headers: <String, String>{'Content-Type': 'application/x-www-form-urlencoded'},
                                 body: <String, dynamic>{
-                                  "plan_duration": int.parse(item["duration"]),
-                                  "plan_price": int.parse(item["price"].split(" ").first),
+                                  "plan_duration": item["duration"],
+                                  "plan_price": item["price"].split(" ").first,
+                                  "plan_name": item["title"],
+                                  "user_id": db!.get("uid"),
                                 },
                               );
 
