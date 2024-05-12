@@ -1,9 +1,13 @@
 <?php
+require_once 'db.php';
+
 // Database connection settings
 $dsn = 'mysql:host=localhost;dbname=db';
 $username = 'root';
 $password = '';
-
+createSubscriptionsTable($dsn, $username, $password) ;
+createMessagesTable($dsn, $username, $password) ;
+createUsersTable($dsn, $username, $password) ;
 // Create a PDO instance
 try {
     $conn = new PDO($dsn, $username, $password);

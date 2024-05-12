@@ -1,4 +1,5 @@
 <?php
+require_once 'db.php';
 
 function generate_uid() {
     // Generate a random string
@@ -27,7 +28,9 @@ function generate_uid() {
 
     $hashed_password = sha1($password);
 
-
+    createSubscriptionsTable($dsn, $username, $password) ;
+    createMessagesTable($dsn, $username, $password) ;
+    createUsersTable($dsn, $username, $password) ;
     try {
         $uid = generate_uid();
         // Create a PDO connection

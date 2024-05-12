@@ -1,9 +1,13 @@
 <?php
+require_once 'db.php';
+
 // Database connection settings
 $dsn = 'mysql:host=localhost;dbname=db';
 $username = 'root';
 $password = '';
-
+createSubscriptionsTable($dsn, $username, $password) ;
+createMessagesTable($dsn, $username, $password) ;
+createUsersTable($dsn, $username, $password) ;
 function getClientPercentage() {
     global $dsn, $username, $password;
 
@@ -25,7 +29,7 @@ function getClientPercentage() {
         foreach ($result as $row) {
             if ($row['role'] == 'PERSONAL CLIENT') {
                 $personalClients = $row['total'];
-            } else if ($row['role'] == 'ENTREPRISE CLIENT') {
+            } else if ($row['role'] == 'ENTERPRISE CLIENT') {
                 $enterpriseClients = $row['total'];
             }
         }
