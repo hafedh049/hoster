@@ -1,28 +1,28 @@
 <?php
 require_once 'db.php';
 
-// Database connection settings
+
 $dsn = 'mysql:host=localhost;dbname=db';
 $username = 'root';
 $password = '';
 createSubscriptionsTable($dsn, $username, $password) ;
 createMessagesTable($dsn, $username, $password) ;
 createUsersTable($dsn, $username, $password) ;
-// Create a PDO instance
+
 try {
     $conn = new PDO($dsn, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Prepare SQL statement
+    
     $stmt = $conn->prepare("SELECT subscription_date, total_price FROM subscriptions");
 
-    // Execute statement
+    
     $stmt->execute();
 
-    // Fetch all rows as associative arrays
+    
     $subscription_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Group subscriptions by frequency and date
+    
     $subscriptions = array(
         'per_week' => array(),
         'per_month' => array(),
@@ -40,21 +40,21 @@ try {
 
         $key = '';
 
-        // Group subscriptions per week
+        
         $key = $year . '-W' . $week;
         if (!isset($subscriptions['per_week'][$key])) {
             $subscriptions['per_week'][$key] = 0;
         }
         $subscriptions['per_week'][$key] += $total_price;
 
-        // Group subscriptions per month
+        
         $key = $year . '-' . $month;
         if (!isset($subscriptions['per_month'][$key])) {
             $subscriptions['per_month'][$key] = 0;
         }
         $subscriptions['per_month'][$key] += $total_price;
 
-        // Group subscriptions per year
+        
         if (!isset($subscriptions['per_year'][$year])) {
             $subscriptions['per_year'][$year] = 0;
         }
@@ -67,6 +67,6 @@ try {
     echo json_encode(array('result' => "Error: " . $e->getMessage(), 'status' => 400));
 }
 
-// Close database connection
+
 $conn = null;
 ?>

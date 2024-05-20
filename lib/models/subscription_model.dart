@@ -1,7 +1,7 @@
 final class SubscriptionModel {
   final String subscriptionID;
-  final int totalPrice;
-  final int planDuration;
+  final String totalPrice;
+  final String planDuration;
   final DateTime subscriptionDate;
   final String planName;
 
